@@ -2,58 +2,45 @@
 
 ## Overview
 
-This project is an independent implementation of the paper:
-**[Target-Augmented Shared Fusion-based Multimodal Sarcasm Explanation Generation](https://arxiv.org/pdf/2502.07391)**  
+An independent implementation of the paper:  
+[Target-Augmented Shared Fusion-based Multimodal Sarcasm Explanation Generation](https://arxiv.org/pdf/2502.07391)  
 by Palaash Goel, Dushyant Singh Chauhan, and Md Shad Akhtar.
 
-This work addresses the task of **Multimodal Sarcasm Explanation Generation**, where a model is required not only to detect sarcasm but also to explain it using both text and image inputs. TURBO (Target-Augmented Shared Fusion) enhances explanation generation by identifying sarcasm targets and leveraging fusion mechanisms between modalities.
+TURBO enhances multimodal sarcasm explanation by detecting sarcasm, identifying targets, and fusing text and image inputs.
 
 ## Contents of `turbo.ipynb`
 
-The notebook is organized into the following key sections:
+1. **Data Preparation**  
+   - Loads MORE+ dataset (sarcastic posts, explanations).  
+   - Processes text captions, image features, and sarcasm targets.  
 
-### 1. **Data Preparation**
+2. **Core Architecture**  
+   - Modified BART encoder.  
+   - Cross-attention for text-image fusion.  
+   - Sarcasm-target-aware representation.  
+   - Uses Vision Transformer (ViT) or object detection scores.  
 
-- Loads the extended MORE+ dataset containing sarcastic posts and their explanations.
-- Parses input modalities:
-  - Textual captions
-  - Image features
-  - Annotated sarcasm targets
-- Preprocesses the data into the input format for training and evaluation.
+3. **Training Pipeline**  
+   - Splits data into train/validation.  
+   - Applies sequence generation loss.  
+   - Trains with teacher forcing.  
+   - Logs loss and metrics.  
 
-### 2. **Core Architecture**
-
-- Defines the TURBO model with:
-  - A modified BART encoder
-  - Cross-attention layers to fuse image features
-  - A sarcasm-target-aware representation
-- Image features are handled using extracted Vision Transformer (ViT) embeddings or object detection scores.
-
-### 3. **Training Pipeline**
-
-- Loads training and validation splits from the dataset.
-- Compiles the model using standard loss functions for sequence generation.
-- Trains TURBO using teacher forcing and sequence-level supervision.
-- Logs intermediate loss and performance metrics.
-
-### 4. **Evaluation System**
-
-- Evaluates model on the test split using BLEU, ROUGE, and METEOR scores.
-- Visualizes explanations alongside sarcasm targets.
-- Includes examples of both correct and incorrect generations with analysis.
+4. **Evaluation System**  
+   - Tests with BLEU, ROUGE, METEOR scores.  
+   - Visualizes explanations and targets.  
+   - Analyzes correct/incorrect outputs.  
 
 ## Installation
 
-### Requirements
+### Requirements  
+- Python 3.8+  
+- PyTorch >= 1.10  
+- Transformers (HuggingFace)  
+- Jupyter Notebook  
+- See `requirements.txt` for more.  
 
-- Python 3.8+
-- PyTorch >= 1.10
-- Transformers (HuggingFace)
-- Jupyter Notebook
-- Other dependencies in `requirements.txt`
-
-### Setup Instructions
-
+### Setup  
 ```bash
 git clone https://github.com/yourusername/TURBO-MuSE.git
 cd TURBO-MuSE
@@ -61,12 +48,11 @@ pip install -r requirements.txt
 jupyter notebook turbo.ipynb
 ```
 
-## Dataset
-The MORE+ dataset is a publicly available extension of the Multimodal Opinion-based Reasoning (MORE) dataset.
-It includes sarcasm targets that enhance model interpretability.
-If you do not have the dataset, refer to the original paper for access or reproduce the format.
+## Dataset  
+Uses the MORE+ dataset, an extension of MORE with sarcasm targets.  
+Refer to the paper for access or format details.
 
-Citation
+## Citation  
 ```bibtex
 @article{goel2025turbo,
   title={Target-Augmented Shared Fusion-based Multimodal Sarcasm Explanation Generation},
@@ -76,6 +62,5 @@ Citation
 }
 ```
 
-## Acknowledgments
-This is a research-grade independent reimplementation of TURBO. Special thanks to the original authors for the concept and inspiration.
-
+## Acknowledgments  
+A research-grade reimplementation. Thanks to the original authors for the concept.
