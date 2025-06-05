@@ -1,0 +1,81 @@
+# TURBO: Target-Augmented Shared Fusion-based Multimodal Sarcasm Explanation
+
+## Overview
+
+This project is an independent implementation of the paper:
+**[Target-Augmented Shared Fusion-based Multimodal Sarcasm Explanation Generation](https://arxiv.org/pdf/2502.07391)**  
+by Palaash Goel, Dushyant Singh Chauhan, and Md Shad Akhtar.
+
+This work addresses the task of **Multimodal Sarcasm Explanation Generation**, where a model is required not only to detect sarcasm but also to explain it using both text and image inputs. TURBO (Target-Augmented Shared Fusion) enhances explanation generation by identifying sarcasm targets and leveraging fusion mechanisms between modalities.
+
+## Contents of `turbo.ipynb`
+
+The notebook is organized into the following key sections:
+
+### 1. **Data Preparation**
+
+- Loads the extended MORE+ dataset containing sarcastic posts and their explanations.
+- Parses input modalities:
+  - Textual captions
+  - Image features
+  - Annotated sarcasm targets
+- Preprocesses the data into the input format for training and evaluation.
+
+### 2. **Core Architecture**
+
+- Defines the TURBO model with:
+  - A modified BART encoder
+  - Cross-attention layers to fuse image features
+  - A sarcasm-target-aware representation
+- Image features are handled using extracted Vision Transformer (ViT) embeddings or object detection scores.
+
+### 3. **Training Pipeline**
+
+- Loads training and validation splits from the dataset.
+- Compiles the model using standard loss functions for sequence generation.
+- Trains TURBO using teacher forcing and sequence-level supervision.
+- Logs intermediate loss and performance metrics.
+
+### 4. **Evaluation System**
+
+- Evaluates model on the test split using BLEU, ROUGE, and METEOR scores.
+- Visualizes explanations alongside sarcasm targets.
+- Includes examples of both correct and incorrect generations with analysis.
+
+## Installation
+
+### Requirements
+
+- Python 3.8+
+- PyTorch >= 1.10
+- Transformers (HuggingFace)
+- Jupyter Notebook
+- Other dependencies in `requirements.txt`
+
+### Setup Instructions
+
+```bash
+git clone https://github.com/yourusername/TURBO-MuSE.git
+cd TURBO-MuSE
+pip install -r requirements.txt
+jupyter notebook turbo.ipynb
+```
+
+## Dataset
+The MORE+ dataset is a publicly available extension of the Multimodal Opinion-based Reasoning (MORE) dataset.
+It includes sarcasm targets that enhance model interpretability.
+If you do not have the dataset, refer to the original paper for access or reproduce the format.
+
+Citation
+```bibtex
+@article{goel2025turbo,
+  title={Target-Augmented Shared Fusion-based Multimodal Sarcasm Explanation Generation},
+  author={Goel, Palaash and Chauhan, Dushyant Singh and Akhtar, Md Shad},
+  journal={arXiv preprint arXiv:2502.07391},
+  year={2025}
+}
+```
+
+## Acknowledgments
+This is a research-grade independent reimplementation of TURBO. Special thanks to the original authors for the concept and inspiration.
+
